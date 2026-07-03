@@ -1,6 +1,10 @@
 ---
 import '../styles/tokens.css';
-import { GUMLET_VIDEO_ID, VIDEO_AUTOPLAY, SHOW_DAY_BREAKDOWN } from '../config';
+import { GUMLET_VIDEO_ID, VIDEO_AUTOPLAY, SHOW_DAY_BREAKDOWN, SOCIAL_PROOF } from '../config';
+
+const tickerItems = ['3 DAYS', '10 MINUTES A DAY', 'ONE GOAL', 'CLARITY', 'REWIRE', 'MOMENTUM', 'FREE'];
+// Two copies per track + two tracks = seamless loop at any viewport width.
+const tickerRun = [...tickerItems, ...tickerItems];
 
 const videoSrc = `https://play.gumlet.io/embed/${GUMLET_VIDEO_ID}?background=false&autoplay=${VIDEO_AUTOPLAY}&loop=true&disable_player_controls=false`;
 
@@ -84,6 +88,22 @@ const days = [
         </p>
       </section>
 
+      <!-- Ticker: kinetic type divider, decorative only -->
+      <div class="ticker" aria-hidden="true">
+        {
+          [0, 1].map(() => (
+            <div class="ticker-track">
+              {tickerRun.map((item) => (
+                <>
+                  <span class="tick-item">{item}</span>
+                  <span class="tick-sep" />
+                </>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+
       <!-- Three-day breakdown -->
       {
         SHOW_DAY_BREAKDOWN && (
@@ -111,6 +131,15 @@ const days = [
           Join the free 3-Day Goals &amp; Meditation Challenge. Day 1 lands in your inbox
           immediately.
         </p>
+        {
+          SOCIAL_PROOF && (
+            <figure class="proof">
+              <span class="proof-bar" aria-hidden="true" />
+              <blockquote>{SOCIAL_PROOF.quote}</blockquote>
+              <figcaption>— {SOCIAL_PROOF.attribution}</figcaption>
+            </figure>
+          )
+        }
         <form id="optin-form" novalidate>
           <input
             type="email"
@@ -132,11 +161,6 @@ const days = [
 
     <!-- Footer -->
     <footer class="site-footer">
-      <nav>
-        <a href="https://gainsjournal.com/blog/10x-keto-secrets-secret-1/">Keto Hacking Secrets</a>
-        <a href="https://gainsjournal.com/blog/attainment/">Goal Hacking</a>
-        <a href="https://gainsjournal.com/blog/">The Journal</a>
-      </nav>
       <span class="copyright">© 2026 GainsJournal.com</span>
     </footer>
 
@@ -429,6 +453,39 @@ const days = [
         text-transform: uppercase;
       }
 
+      /* ============ Ticker ============ */
+      .ticker {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 15px 0;
+        border-top: 1px solid var(--border-faint);
+        user-select: none;
+      }
+      .ticker-track {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        padding-right: 36px;
+        flex: 0 0 auto;
+      }
+      .tick-item {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.24em;
+        color: var(--ink-40);
+        text-transform: uppercase;
+      }
+      .tick-sep {
+        display: inline-block;
+        width: 7px;
+        height: 12px;
+        background: var(--color-accent);
+        transform: skewX(var(--skew));
+        opacity: 0.85;
+      }
+
       /* ============ Days ============ */
       .days {
         border-top: 1px solid var(--border-faint);
@@ -505,6 +562,35 @@ const days = [
         color: var(--ink-68);
         max-width: 440px;
       }
+      .proof {
+        margin: 0;
+        max-width: 440px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .proof-bar {
+        display: block;
+        width: 26px;
+        height: 4px;
+        background: var(--color-gold);
+        transform: skewX(var(--skew));
+      }
+      .proof blockquote {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink-72);
+      }
+      .proof figcaption {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-gold);
+      }
       #optin-form {
         display: flex;
         flex-wrap: wrap;
@@ -572,23 +658,6 @@ const days = [
         flex-direction: column;
         align-items: center;
         gap: 14px;
-      }
-      .site-footer nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 28px;
-      }
-      .site-footer nav a {
-        color: var(--ink-55);
-        text-decoration: none;
-        font-size: 12px;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        transition: color 0.15s ease;
-      }
-      .site-footer nav a:hover {
-        color: var(--color-ink);
       }
       .copyright {
         font-size: 12px;
@@ -668,6 +737,11 @@ const days = [
           animation: gj-glow 14s ease-in-out infinite alternate;
         }
 
+        /* Ticker: slow endless crawl */
+        .ticker-track {
+          animation: gj-ticker 48s linear infinite;
+        }
+
         /* Day band: gold line draws, cells rise, on first view */
         .days-line {
           transform: scaleX(0);
@@ -694,6 +768,11 @@ const days = [
         }
       }
 
+      @keyframes gj-ticker {
+        to {
+          transform: translateX(-100%);
+        }
+      }
       @keyframes gj-rise {
         to {
           transform: translateY(0);

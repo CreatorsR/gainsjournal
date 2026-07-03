@@ -18,6 +18,8 @@ Build-time flags live in [`src/config.ts`](src/config.ts):
 - `GUMLET_VIDEO_ID` — **placeholder**; swap for the final video ID before launch
 - `VIDEO_AUTOPLAY` — appended to the Gumlet embed src
 - `SHOW_DAY_BREAKDOWN` — renders/hides the Day 1–3 band
+- `SOCIAL_PROOF` — quote + attribution above the signup form. **PLACEHOLDER
+  copy — swap in a real member quote before launch** (set to `null` to hide)
 
 Design tokens (colors, fonts, the −12° brand skew) live in
 [`src/styles/tokens.css`](src/styles/tokens.css) — never hardcode design values

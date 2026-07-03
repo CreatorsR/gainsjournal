@@ -8,3 +8,12 @@ export const VIDEO_AUTOPLAY = true;
 
 // Renders / hides the Day 1-2-3 breakdown band.
 export const SHOW_DAY_BREAKDOWN = true;
+
+// Social proof shown above the signup form.
+// PLACEHOLDER — replace with a real member quote from business data BEFORE
+// launch. Set to null to hide the block entirely.
+export const SOCIAL_PROOF = {
+  quote:
+    "I'd been circling the same goal for two years. Day 2 broke something loose — I finally stopped negotiating with myself.",
+  attribution: 'Challenge member', // PLACEHOLDER — use a real first name + last initial
+};

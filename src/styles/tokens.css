@@ -1,0 +1,33 @@
+/* GainsJournal design tokens — single source of truth for design values. */
+
+:root {
+  /* Color */
+  --color-bg: #0b0b0d;
+  --color-band: #0e0e11;
+  --color-input: #15151a;
+  --color-ink: #f4f2ee;
+  --color-accent: #e5195f;
+  --color-accent-hover: #ff2a73;
+  --color-gold: #f5c518;
+
+  /* Ink alphas (muted text) */
+  --ink-72: rgba(244, 242, 238, 0.72);
+  --ink-68: rgba(244, 242, 238, 0.68);
+  --ink-65: rgba(244, 242, 238, 0.65);
+  --ink-55: rgba(244, 242, 238, 0.55);
+  --ink-45: rgba(244, 242, 238, 0.45);
+  --ink-40: rgba(244, 242, 238, 0.4);
+  --ink-38: rgba(244, 242, 238, 0.38);
+  --ink-35: rgba(244, 242, 238, 0.35);
+
+  /* Borders */
+  --border-faint: rgba(244, 242, 238, 0.08);
+  --border-input: rgba(244, 242, 238, 0.18);
+
+  /* Type */
+  --font-display: 'Oswald', Helvetica, Arial, sans-serif;
+  --font-body: Helvetica, Arial, sans-serif;
+
+  /* Brand shape: skew replaces border-radius */
+  --skew: -12deg;
+}

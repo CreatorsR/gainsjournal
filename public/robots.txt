@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gainsjournal.com/sitemap-index.xml

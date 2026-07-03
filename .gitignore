@@ -3,3 +3,6 @@ dist/
 .astro/
 .vercel/
 .DS_Store
+
+.vercel
+.env*
